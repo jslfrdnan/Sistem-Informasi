@@ -1,0 +1,270 @@
+.stok-container {
+  padding: 30px 0;
+  min-height: calc(100vh - 70px);
+}
+
+.page-header {
+  margin-bottom: 30px;
+}
+
+.page-header h1 {
+  color: var(--primary-color);
+  margin-bottom: 8px;
+}
+
+.page-header p {
+  color: var(--gray-600);
+}
+
+.filters-card {
+  background: white;
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-bottom: 30px;
+}
+
+.filters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.stok-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.stok-card {
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stok-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--box-shadow-lg);
+}
+
+.stok-header {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  color: white;
+  padding: 20px;
+}
+
+.stok-grade {
+  margin-bottom: 10px;
+}
+
+.grade-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.grade-badge.grade-A {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.grade-badge.grade-B {
+  background-color: var(--warning-color);
+  color: white;
+}
+
+.grade-badge.grade-C {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.stok-kebun strong {
+  display: block;
+  font-size: 1.125rem;
+  margin-bottom: 4px;
+}
+
+.stok-kebun small {
+  opacity: 0.9;
+  font-size: 0.875rem;
+}
+
+.stok-info {
+  padding: 20px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  color: var(--gray-600);
+  font-size: 0.875rem;
+}
+
+.info-value {
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.info-value.highlight {
+  color: var(--primary-color);
+  font-size: 1.125rem;
+}
+
+.info-value.price {
+  color: var(--secondary-color);
+  font-size: 1.125rem;
+}
+
+.stok-notes {
+  padding: 0 20px 15px;
+  color: var(--gray-600);
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+.stok-actions {
+  padding: 15px 20px 20px;
+}
+
+.stok-actions .btn {
+  width: 100%;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter-buttons .btn {
+  flex: 1;
+  min-width: 120px;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  margin: 20px 0;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.table thead {
+  background: var(--gray-50);
+}
+
+.table th,
+.table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.table th {
+  font-weight: 600;
+  color: var(--gray-700);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.table tbody tr:hover {
+  background: var(--gray-50);
+}
+
+.table-summary {
+  background: var(--gray-100);
+  font-weight: 600;
+}
+
+.text-success {
+  color: var(--success-color);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.badge-warning {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.badge-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.badge-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.badge-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.badge-primary {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+.badge-secondary {
+  background-color: #e2e3e5;
+  color: #383d41;
+}
+
+@media (max-width: 768px) {
+  .stok-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filters-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-buttons {
+    flex-direction: column;
+  }
+
+  .filter-buttons .btn {
+    width: 100%;
+  }
+
+  .table {
+    font-size: 0.875rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px 10px;
+  }
+}
