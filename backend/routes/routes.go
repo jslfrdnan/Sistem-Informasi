@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"fmt"
 	"sawit-backend/controllers"
 	"sawit-backend/middleware"
 
@@ -89,5 +90,21 @@ func SetupRoutes(router *gin.Engine) {
 			reports.GET("/daily-sales", middleware.RoleMiddleware("admin", "staff"), controllers.GetDailySales)
 			reports.GET("/dashboard", controllers.GetDashboardStats)
 		}
+
+		// Log Aktivitas (Admin only)
+		logs := protected.Group("/logs")
+		logs.Use(middleware.RoleMiddleware("admin"))
+		{
+			logs.GET("", controllers.GetLogAktivitas)
+		}
 	}
+
+	// Log all registered routes on startup
+	routes := router.Routes()
+	fmt.Println("\n🚀 Registered Routes:")
+	fmt.Println("====================")
+	for _, route := range routes {
+		fmt.Printf("%-7s %s\n", route.Method, route.Path)
+	}
+	fmt.Println("====================\n")
 }

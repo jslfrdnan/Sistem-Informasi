@@ -18,11 +18,37 @@
 .navbar-brand {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 12px;
   text-decoration: none;
   color: white;
   font-size: 1.25rem;
   font-weight: 700;
+}
+
+.navbar-logo {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  background: white;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.navbar-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.navbar-title {
+  line-height: 1.2;
+}
+
+.navbar-subtitle {
+  font-size: 0.7rem;
+  font-weight: 400;
+  opacity: 0.9;
+  line-height: 1;
 }
 
 .navbar-icon {

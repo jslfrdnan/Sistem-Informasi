@@ -55,10 +55,45 @@ func main() {
 
 	// Start server
 	port := config.AppConfig.ServerPort
-	log.Printf("🌴 Server running on port %s", port)
-	log.Printf("📊 API Documentation: http://localhost:%s/health", port)
+	log.Printf("🌴 Sawit API Server - Port %s", port)
+	
+	// Print all available endpoints
+	printEndpoints(port)
 	
 	if err := router.Run(":" + port); err != nil {
 		log.Fatal("Failed to start server: ", err)
 	}
+}
+
+func printEndpoints(port string) {
+	log.Println("\n📋 Available Endpoints:")
+	log.Println("  GET    /health")
+	log.Println("  POST   /api/auth/register")
+	log.Println("  POST   /api/auth/login")
+	log.Println("  GET    /api/profile")
+	log.Println("  PUT    /api/profile")
+	log.Println("  GET    /api/kebun")
+	log.Println("  GET    /api/stok")
+	log.Println("  GET    /api/stok/:id")
+	log.Println("  POST   /api/stok")
+	log.Println("  PUT    /api/stok/:id")
+	log.Println("  GET    /api/purchase-orders")
+	log.Println("  GET    /api/purchase-orders/:id")
+	log.Println("  POST   /api/purchase-orders")
+	log.Println("  PUT    /api/purchase-orders/:id/status")
+	log.Println("  DELETE /api/purchase-orders/:id")
+	log.Println("  GET    /api/jadwal")
+	log.Println("  POST   /api/jadwal")
+	log.Println("  GET    /api/timbangan")
+	log.Println("  POST   /api/timbangan/:id/weigh-in")
+	log.Println("  POST   /api/timbangan/:id/weigh-out")
+	log.Println("  GET    /api/dokumen")
+	log.Println("  GET    /api/pembayaran")
+	log.Println("  POST   /api/pembayaran")
+	log.Println("  PUT    /api/pembayaran/:id/verify")
+	log.Println("  GET    /api/reports/dashboard")
+	log.Println("  GET    /api/reports/daily-sales")
+	log.Println("  GET    /api/logs")
+	log.Println("  GET    /api/logs/statistics")
+	log.Printf("\n✅ Server ready: http://localhost:%s\n", port)
 }

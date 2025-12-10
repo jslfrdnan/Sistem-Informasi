@@ -17,6 +17,7 @@ import Timbangan from './pages/Timbangan';
 import Pembayaran from './pages/Pembayaran';
 import Dokumen from './pages/Dokumen';
 import Reports from './pages/Reports';
+import LogAktivitas from './pages/LogAktivitas';
 
 // Styles
 import './styles/global.css';
@@ -130,6 +131,15 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute>
             <Reports />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/logs"
+        element={
+          <ProtectedRoute requiredRole="admin">
+            <LogAktivitas />
           </ProtectedRoute>
         }
       />

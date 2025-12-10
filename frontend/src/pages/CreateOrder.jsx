@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { poAPI } from '../services/api';
 import Navbar from '../components/Navbar';
+import SuccessModal from '../components/SuccessModal';
 import './CreateOrder.css';
 
 const CreateOrder = () => {
@@ -18,6 +19,7 @@ const CreateOrder = () => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [showSuccess, setShowSuccess] = useState(false);
 
   if (!stok) {
     return (
@@ -73,13 +75,17 @@ const CreateOrder = () => {
       };
 
       await poAPI.create(payload);
-      alert('Purchase Order berhasil dibuat!');
-      navigate('/my-orders');
+      setShowSuccess(true);
     } catch (err) {
       setError(err.response?.data?.error || 'Gagal membuat order');
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleSuccessClose = () => {
+    setShowSuccess(false);
+    navigate('/my-orders');
   };
 
   const formatCurrency = (value) => {
@@ -93,6 +99,11 @@ const CreateOrder = () => {
   return (
     <>
       <Navbar />
+      <SuccessModal 
+        show={showSuccess}
+        message="Purchase Order berhasil dibuat! Pesanan Anda sedang menunggu persetujuan admin."
+        onClose={handleSuccessClose}
+      />
       <div className="create-order-container">
         <div className="container">
           <div className="page-header">

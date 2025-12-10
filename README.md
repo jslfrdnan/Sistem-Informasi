@@ -180,6 +180,7 @@ Pastikan sudah terinstall:
 ✅ **Verifikasi pembayaran**  
 ✅ Laporan penjualan harian  
 ✅ Dashboard analytics  
+✅ **📋 Monitor log aktivitas sistem** (Audit trail)  
 ✅ Full access ke semua fitur
 
 ### Untuk Staff
@@ -243,6 +244,12 @@ PUT    /api/pembayaran/:id/verify    - Verify pembayaran (admin)
 ```
 GET    /api/reports/daily-sales      - Laporan penjualan harian
 GET    /api/reports/dashboard        - Dashboard statistics
+```
+
+### Log Aktivitas (Admin only)
+```
+GET    /api/logs                     - Get activity logs with filters
+GET    /api/logs/statistics          - Get log statistics & summary
 ```
 
 ## 🎨 Tampilan Responsif

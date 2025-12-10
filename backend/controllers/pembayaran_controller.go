@@ -230,26 +230,30 @@ func GetDailySales(c *gin.Context) {
 	endDate := c.Query("end_date")
 
 	query := `
-		SELECT DATE(tanggal_dokumen) as tanggal,
-		       COUNT(DISTINCT id) as jumlah_transaksi,
-		       SUM(jumlah_kg) as total_kg,
+		SELECT DATE(dp.tanggal_dokumen) as tanggal,
+		       COUNT(DISTINCT dp.id) as jumlah_transaksi,
+		       SUM(dp.jumlah_kg) as total_kg,
 		       SUM(total_akhir) as total_pendapatan,
-		       AVG(harga_per_kg) as rata_rata_harga
-		FROM dokumen_penjualan
+		       AVG(dp.harga_per_kg) as rata_rata_harga,
+		       SUM(CASE WHEN t.grade_aktual = 'A' THEN dp.jumlah_kg ELSE 0 END) as grade_a,
+		       SUM(CASE WHEN t.grade_aktual = 'B' THEN dp.jumlah_kg ELSE 0 END) as grade_b,
+		       SUM(CASE WHEN t.grade_aktual = 'C' THEN dp.jumlah_kg ELSE 0 END) as grade_c
+		FROM dokumen_penjualan dp
+		LEFT JOIN timbangan t ON dp.timbang_id = t.id
 		WHERE 1=1
 	`
 	args := []interface{}{}
 
 	if startDate != "" {
-		query += " AND DATE(tanggal_dokumen) >= ?"
+		query += " AND DATE(dp.tanggal_dokumen) >= ?"
 		args = append(args, startDate)
 	}
 	if endDate != "" {
-		query += " AND DATE(tanggal_dokumen) <= ?"
+		query += " AND DATE(dp.tanggal_dokumen) <= ?"
 		args = append(args, endDate)
 	}
 
-	query += " GROUP BY DATE(tanggal_dokumen) ORDER BY tanggal DESC"
+	query += " GROUP BY DATE(dp.tanggal_dokumen) ORDER BY tanggal DESC"
 
 	rows, err := config.DB.Query(query, args...)
 	if err != nil {
@@ -263,8 +267,9 @@ func GetDailySales(c *gin.Context) {
 		var tanggal string
 		var jumlahTransaksi int
 		var totalKg, totalPendapatan, rataHarga float64
+		var gradeA, gradeB, gradeC sql.NullFloat64
 
-		err := rows.Scan(&tanggal, &jumlahTransaksi, &totalKg, &totalPendapatan, &rataHarga)
+		err := rows.Scan(&tanggal, &jumlahTransaksi, &totalKg, &totalPendapatan, &rataHarga, &gradeA, &gradeB, &gradeC)
 		if err != nil {
 			continue
 		}
@@ -275,6 +280,9 @@ func GetDailySales(c *gin.Context) {
 			"total_kg":          totalKg,
 			"total_pendapatan":  totalPendapatan,
 			"rata_rata_harga":   rataHarga,
+			"grade_a":           gradeA.Float64,
+			"grade_b":           gradeB.Float64,
+			"grade_c":           gradeC.Float64,
 		})
 	}
 

@@ -16,8 +16,11 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="container navbar-container">
         <Link to="/" className="navbar-brand">
-          <span className="navbar-icon">🌴</span>
-          <span className="navbar-title">Sawit System</span>
+          <img src="/logo.png" alt="Logo" className="navbar-logo" />
+          <div className="navbar-text">
+            <span className="navbar-title">Sawit System</span>
+            <span className="navbar-subtitle">Minahasa Sejahtera</span>
+          </div>
         </Link>
 
         <div className="navbar-menu">
@@ -40,6 +43,7 @@ const Navbar = () => {
               <Link to="/pembayaran" className="nav-link">Pembayaran</Link>
               <Link to="/dokumen" className="nav-link">Dokumen</Link>
               <Link to="/reports" className="nav-link">Laporan</Link>
+              <Link to="/logs" className="nav-link">Log Aktivitas</Link>
             </>
           )}
           

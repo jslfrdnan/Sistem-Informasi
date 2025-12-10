@@ -30,9 +30,10 @@ const Login = () => {
     <div className="auth-container">
       <div className="auth-card">
         <div className="auth-header">
-          <div className="auth-icon">🌴</div>
+          <img src="/logo.png" alt="Logo Minahasa Sejahtera" className="auth-logo" />
           <h1>Sistem Informasi</h1>
           <p>Perkebunan Kelapa Sawit</p>
+          <p className="company-name">Minahasa Sejahtera 2015</p>
         </div>
 
         <form onSubmit={handleSubmit} className="auth-form">
